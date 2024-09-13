@@ -1,5 +1,5 @@
 {% set name = "docstring_parser" %}
-{% set version = "0.15" %}
+{% set version = "0.16" %}
 
 package:
   name: {{ name|lower }}
@@ -7,20 +7,20 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 48ddc093e8b1865899956fcc03b03e66bb7240c310fac5af81814580c55bf682
+  sha256: 538beabd0af1e2db0146b6bd3caa526c35a34d61af9fd2887f3a8a27a739aa6e
 
 build:
-  noarch: python
+  skip: True  # [py<36]
   number: 0
-  script: {{ PYTHON }} -m pip install . -vv
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
 requirements:
   host:
-    - python >=3.6,<4.0
+    - python
     - poetry-core >=1.0.0
     - pip
   run:
-    - python >=3.6
+    - python
 
 test:
   imports:
@@ -40,6 +40,7 @@ about:
     Parse Python docstrings. Currently support ReST, Google, and Numpydoc-style
     docstrings.
   dev_url: https://github.com/rr-/docstring_parser
+  doc_url: https://github.com/rr-/docstring_parser
 
 extra:
   recipe-maintainers:
