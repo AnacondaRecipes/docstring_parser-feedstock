@@ -23,12 +23,16 @@ requirements:
     - python
 
 test:
+  source_files:
+    - docstring_parser
   imports:
     - docstring_parser
-  commands:
-    - pip check
   requires:
     - pip
+    - pytest
+  commands:
+    - pip check
+    - pytest -v docstring_parser
 
 about:
   home: https://github.com/rr-/docstring_parser
